@@ -1,0 +1,15 @@
+syntax = "v1"
+
+type request {
+	Name string `path:"name,options=[you,me]"`
+}
+
+type response {
+	Message string `json:"message"`
+}
+
+service stream-api {
+	@handler StreamHandler
+	get /stream/:name (request) returns (response)
+}
+

@@ -1,0 +1,15 @@
+services:
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.11
+    ports:
+      - "2379:2379"
+    command: etcd -advertise-client-urls http://0.0.0.0:2379 -listen-client-urls http://0.0.0.0:2379
+
+  stream:
+    image: gateway-zero-ex/stream:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - etcd
+    environment:
+      ETCD_HOSTS: etcd:2379

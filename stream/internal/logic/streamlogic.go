@@ -24,7 +24,9 @@ func NewStreamLogic(ctx context.Context, svcCtx *svc.ServiceContext) *StreamLogi
 }
 
 func (l *StreamLogic) Stream(req *types.Request) (resp *types.Response, err error) {
-	// todo: add your logic here and delete this line
+	resp = &types.Response{
+		Message: "Hello " + req.Name,
+	}
 
-	return
+	return resp, nil
 }
